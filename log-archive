@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Verificar si se proporcionó un directorio como argumento
+if [ -z "$1" ]; then
+    echo "Error: Debes proporcionar un directorio de registros como argumento."
+    echo "Uso: log-archive <log-directory>"
+    exit 1
+fi
+
+# Verificar si el directorio existe
+if [ ! -d "$1" ]; then
+    echo "Error: El directorio '$1' no existe."
+    exit 1
+fi
+
+# Crear un directorio para almacenar los archivos comprimidos
+archive_dir="logs_archive"
+if [ ! -d "$archive_dir" ]; then
+    mkdir "$archive_dir"
+fi
+
+# Obtener la fecha y hora actual
+timestamp=$(date +"%Y%m%d_%H%M%S")
+
+# Nombre del archivo comprimido
+archive_name="logs_archive_$timestamp.tar.gz"
+
+# Comprimir los registros en un archivo .tar.gz
+tar -czf "$archive_dir/$archive_name" -C "$1" .
+
+# Verificar si la compresión fue exitosa
+if [ $? -eq 0 ]; then
+    echo "Registros comprimidos exitosamente en: $archive_dir/$archive_name"
+else
+    echo "Error: No se pudo comprimir los registros."
+    exit 1
+fi
