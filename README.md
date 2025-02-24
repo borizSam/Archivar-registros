@@ -26,7 +26,7 @@ Esta es una herramienta CLI para comprimir y archivar registros en un sistema Un
 
 1. Clona este repositorio o descarga el script `log-archive`:
    ```bash
-   git clone https://github.com/borizsam/Archivar-registros.git
+   git clone [https://github.com/borizsam/Archivar-registros.git](https://github.com/borizSam/Archivar-registros.git)
 
 2. Navega al directorio del proyecto:
 
